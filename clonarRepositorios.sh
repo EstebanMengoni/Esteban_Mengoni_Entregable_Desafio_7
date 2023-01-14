@@ -1,5 +1,8 @@
 #!/bin/bash
 
+sudo apt install curl
+sudo apt install git
+
 read -p "Desea clonar un repositorio privado? (y/n). " sino
 
 while [ $sino != "n"  ]
