@@ -5,7 +5,7 @@ sudo apt install git
 
 read -p "Desea clonar un repositorio privado? (y/n). " sino
 
-while [ $sino != "n"  ]
+while [ $sino == "y"  ]
 do 
   read -p "Ingrese el usuario del cual quiere copiar el repositorio. " usuario
   
@@ -20,7 +20,7 @@ done
 
 read -p "Desea clonar todos los repositorios de un usuario (y/n). " sino
 
-if [ $sino != "n" ]
+if [ $sino == "y" ]
 then
   read -p "Ingrese el usuario del cual quiere copiar todos sus repositorios. " user
 
