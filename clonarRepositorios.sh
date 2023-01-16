@@ -3,10 +3,13 @@
 sudo apt install curl
 sudo apt install git
 
-read -p "Desea clonar un repositorio privado? (y/n). " sino
+echo -e "Elija una opcion\n0. Salir\n1. Clonar repositorio privado\n2. Clonar todos los repositorios de un usuario"
 
-while [ $sino == "y"  ]
+read opcion
+
+while [ $opcion != "0"  ]
 do 
+if [ $opcion == "1" ]
   read -p "Ingrese el usuario del cual quiere copiar el repositorio. " usuario
   
   read -p "Ingrese el TOKEN del usuario. " token
@@ -14,17 +17,17 @@ do
   read -p "Ingrese el nombre del repositorio a copiar. " repo
   
   git clone https://$token@github.com/$usuario/$repo
-  
-  read -p "Desea clonar otro repositorio privado (y/n). " sino
-done
+fi
 
-read -p "Desea clonar todos los repositorios de un usuario (y/n). " sino
-
-if [ $sino == "y" ]
+if [ $opcion == "2" ]
 then
   read -p "Ingrese el usuario del cual quiere copiar todos sus repositorios. " user
 
   curl -s https://api.github.com/users/$user/repos | grep \"clone_url\" | awk '{print$2}' | sed -e 's/"//g' -e 's/,//g' | xargs -n1 git clone
-else
-  echo "Hasta luego!"
 fi
+
+echo -e "Elija una opcion\n0. Salir\n1. Clonar repositorio privado\n2. Clonar todos los repositorios de un usuario"
+
+read opcion
+
+done
